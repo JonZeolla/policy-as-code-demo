@@ -9,7 +9,10 @@ build:
     - VERSION="$(< VERSION)"
     - docker build --build-arg COMMIT_HASH="${CI_COMMIT_SHA}" --build-arg VERSION="${VERSION}" -t policy-as-code-demo .
 
-smoke-test:
+policy:
   stage: test
+  image:
+    name: willies/dockerfile_lint:a36b300_git.0
+    entrypoint: [""]
   script:
-    - docker run policy-as-code-demo
+    - dockerfile_lint -r /builds/demo/policy-as-code-demo/policy/Dockerfile.yml -f Dockerfile
