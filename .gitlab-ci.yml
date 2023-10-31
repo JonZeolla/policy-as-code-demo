@@ -23,3 +23,13 @@ smoke-test:
   stage: test
   script:
     - docker run policy-as-code-demo
+
+test-iac:
+  stage: test
+  image:
+    name: hashicorp/terraform
+    entrypoint: [""]
+  script:
+    - cd iac
+    - "terraform init -backend=false"
+    - terraform validate
