@@ -27,7 +27,7 @@ smoke-test:
 test-iac:
   stage: test
   image:
-    name: hashicorp/terraform
+    name: seiso/easy_infra:2023.10.06-terraform
     entrypoint: [""]
   script:
     - cd iac
