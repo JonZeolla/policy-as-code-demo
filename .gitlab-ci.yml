@@ -1,9 +1,15 @@
 ---
 stages:
   - build
+  - test
 
 build:
   stage: build
   script:
     - VERSION="$(< VERSION)"
     - docker build --build-arg COMMIT_HASH="${CI_COMMIT_SHA}" --build-arg VERSION="${VERSION}" -t policy-as-code-demo .
+
+smoke-test:
+  stage: test
+  script:
+    - docker run policy-as-code-demo
